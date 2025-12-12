@@ -1,0 +1,89 @@
+{
+    "diversity_filter": {
+        "method": "smiles_rl.diversity_filter.diversity_filter_factory.DiversityFilterFactory",
+        "parameters": {
+            "bucket_size": 100,
+            "minscore": 0.05,
+            "minsimilarity": 0.35,
+            "name": "IdenticalMurckoScaffold"
+        }
+    },
+    "logging": {
+        "method": "smiles_rl.logging.reinforcement_logger.ReinforcementLogger",
+        "parameters": {
+            "job_id": "demo_transformer",
+            "job_name": "ppo chemgpt-19m demo",
+            "logging_frequency": 0,
+            "logging_path": "logs/progress_log",
+            "plot_frequency": 500,
+            "recipient": "local",
+            "result_folder": "logs/results",
+            "sender": "http://127.0.0.1"
+        }
+    },
+    "reinforcement_learning": {
+        "method": "smiles_rl.agent.ppo.PPO",
+        "parameters": {
+            "agent": "pre_trained_models/ChEMBL/molgpt.prior",
+            "batch_size": 128,
+            "learning_rate": 5e-06,
+            "n_steps": 1000,
+            "prior": "pre_trained_models/ChEMBL/molgpt.prior",
+            "specific_parameters": {
+                "adaptive_kl": true,
+                "clip": 0.2,
+                "clip_grad_norm": true,
+                "discount_factor": 0.99,
+                "entropy_coeff": 0.01,
+                "freeze_backbone": false,
+                "invalid_score": 0.0,
+                "kl_coeff": 2,
+                "kl_coeff_max": 100.0,
+                "kl_target": 0.15,
+                "max_grad_norm": 0.5,
+                "n_minibatches": 4,
+                "n_updates_per_iteration": 4,
+                "reset_patience": 1000,
+                "reset_validity_threshold": 90,
+                "reward_scale": 10.0,
+                "use_entropy_bonus": true,
+                "use_kl_penalty": true
+            }
+        }
+    },
+    "replay_buffer": {
+        "method": "smiles_rl.replay_buffer.top_history.TopHistory",
+        "parameters": {
+            "k": 32,
+            "memory_size": 1000
+        }
+    },
+    "scoring_function": {
+        "method": "smiles_rl.scoring.reinvent_scoring_factory.ReinventScoringFactory",
+        "parameters": {
+            "name": "custom_sum",
+            "parallel": false,
+            "parameters": [
+                {
+                    "component_type": "predictive_property",
+                    "name": "DRD2",
+                    "specific_parameters": {
+                        "container_type": "scikit_container",
+                        "descriptor_type": "ecfp_counts",
+                        "model_path": "predictive_models/DRD2/RF_DRD2_ecfp4c.pkl",
+                        "radius": 2,
+                        "scikit": "classification",
+                        "size": 2048,
+                        "transformation": {
+                            "transformation_type": "no_transformation"
+                        },
+                        "uncertainty_type": null,
+                        "use_counts": true,
+                        "use_features": true
+                    },
+                    "weight": 1
+                }
+            ]
+        }
+    }
+}
