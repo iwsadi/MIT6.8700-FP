@@ -40,8 +40,10 @@ graph LR
     D -->|Policy Heads| E[Logits: Stop, Atom, Bond, Edge]
 ```
 ## Installation
-Same as the SMILES-RL setup. Use the environment within the GCPN folder:
+After SMILES-RL setup, switch to the conda environment within the GCPN folder:
+
 ```python
+conda deactivate
 cd GCPN
 conda env create -f env.yml
 conda activate gcpn_env
