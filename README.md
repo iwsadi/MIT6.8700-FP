@@ -26,9 +26,9 @@ The action space is decomposed into 5 MLP heads:
 * **Valence Masking:** Logits for chemically invalid connections are masked with $-\infty$ based on current node degree $\deg(v)$ and $\text{MaxValence}(z)$.
 * **Objective:** We optimize a multi-task supervised loss:
 
-  $
-  \mathcal{L} = \mathcal{L}_{\text{stop}} + \mathcal{L}_{\text{atom}} + \mathcal{L}_{\text{addbond}} + \mathcal{L}_{\text{edge}} + \mathcal{L}_{\text{bond}}
-  $
+```math
+\mathcal{L} = \mathcal{L}_{\text{stop}} + \mathcal{L}_{\text{atom}} + \mathcal{L}_{\text{addbond}} + \mathcal{L}_{\text{edge}} + \mathcal{L}_{\text{bond}}
+```
 
 ### 📐 Pipeline Overview
 
@@ -38,3 +38,32 @@ graph LR
     B -->|Rand BFS| C(Trajectory G_t, f_t)
     C -->|GNN Encoder| D[Embeddings H, g]
     D -->|Policy Heads| E[Logits: Stop, Atom, Bond, Edge]
+```
+## Installation
+Same as the SMILES-RL setup. Use the environment within the GCPN folder:
+```python
+cd GCPN
+conda env create -f env.yml
+conda activate gcpn_env
+```
+
+## Usage
+
+### Training GCPN
+If you want to retrain the model, run the following command:
+```python
+python GCPN/pretrain.py
+```
+The file gcpn_prior.pt should be generated. The checkpoints are saved in GCPN/checkpoints in case the training fails. 
+
+### Generation
+```python
+python GCPN/generate_gcpn.py
+```
+
+### Training Agent
+
+
+
+
+
