@@ -26,9 +26,9 @@ The action space is decomposed into 5 MLP heads:
 * **Valence Masking:** Logits for chemically invalid connections are masked with $-\infty$ based on current node degree $\deg(v)$ and $\text{MaxValence}(z)$.
 * **Objective:** We optimize a multi-task supervised loss:
 
-  $$
+  $
   \mathcal{L} = \mathcal{L}_{\text{stop}} + \mathcal{L}_{\text{atom}} + \mathcal{L}_{\text{addbond}} + \mathcal{L}_{\text{edge}} + \mathcal{L}_{\text{bond}}
-  $$
+  $
 
 ### 📐 Pipeline Overview
 
