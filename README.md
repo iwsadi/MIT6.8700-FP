@@ -62,7 +62,9 @@ python GCPN/generate_gcpn.py
 ```
 
 ### Training Agent
-
+```python
+python GCPN/ppo_gcpn.py
+```
 
 
 
