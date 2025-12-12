@@ -62,7 +62,7 @@ This short guide lists the code-only changes and how to use them without bundlin
 - No model weights are shipped; all paths to teacher/student/pretrained weights must be supplied by you.
 - Vocab/tokenizer compatibility: use the same prior for actor and critic to avoid mismatches.
 
-## SMILES-RL-PPO: Transformer-based Molecular Generation with PPO
+## MolGPT-based Transformer with PPO
 
 A reinforcement learning framework for SMILES molecular generation using Proximal Policy Optimization (PPO) and Transformer models (MolGPT).
 
@@ -163,7 +163,6 @@ This framework uses **MolGPT-Zinc15** as the base transformer model for molecula
 - Pre-trained on ZINC15 dataset
 - Fine-tuned using PPO with DRD2 activity as the reward signal
 - Supports adaptive KL penalty to prevent catastrophic forgetting
-
 
 
 ## Graph Convolutional Policy Network (GCPN)
